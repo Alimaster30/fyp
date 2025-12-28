@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVoice AI - FYP | Air University Multan Campus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+        
+        .pipeline-step {
+            position: relative;
+        }
+        
+        .pipeline-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background: #667eea;
+            transform: translateY(-50%);
+        }
+        
+        .pipeline-step:last-child::after {
+            display: none;
+        }
+        
+        .architecture-line {
+            stroke: #667eea;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .architecture-box {
+            fill: #f3f4f6;
+            stroke: #667eea;
+            stroke-width: 2;
+        }
+        
+        .dark .architecture-box {
+            fill: #374151;
+        }
+        
+        @media (max-width: 768px) {
+            .pipeline-step::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-microphone-alt text-purple-600 text-2xl"></i>
+                    <span class="text-xl font-bold">UniVoice AI</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#features" class="hover:text-purple-600 transition">Features</a>
+                    <a href="#architecture" class="hover:text-purple-600 transition">Architecture</a>
+                    <a href="#demo" class="hover:text-purple-600 transition">Demo</a>
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-20 px-6">
+        <div class="container mx-auto text-center animate-fade-in">
+            <!-- FYP Badge -->
+            <div class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                Final Year Project - Air University Multan Campus
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                <span class="gradient-text">AI Powered University</span><br>
+                <span class="text-gray-800 dark:text-gray-200">Voice Assistant</span>
+            </h1>
+            <p class="text-2xl text-gray-600 dark:text-gray-400 mb-4">Fast. Accurate. Urdu and English.</p>
+            <p class="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mx-auto mb-8">
+                An intelligent voice agent that answers student queries instantly using speech to text, intent classification, and predefined verified responses. No hallucinations. No delays.
+            </p>
+            
+            <!-- Team Information -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 max-w-2xl mx-auto mb-8 shadow-lg">
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Developed by:</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm">
+                    <span class="font-medium">Tahir Ali (223595)</span>
+                    <span class="font-medium">Muhammad Talha (223573)</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Supervised by: Professor Memoona Rafique Khan</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="document.getElementById('architecture').scrollIntoView()" class="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition transform hover:scale-105">
+                    View Architecture
+                </button>
+                <button onclick="document.getElementById('demo').scrollIntoView()" class="px-8 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-800 transition">
+                    Watch Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Project Section -->
+    <section class="py-16 px-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-700">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Academic Excellence in AI Innovation</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+                    This Final Year Project represents cutting-edge research in conversational AI, specifically designed for Pakistani universities with native Urdu language support.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-university text-3xl text-purple-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Air University</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Multan Campus - Computer Science Department</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-graduation-cap text-3xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Research Focus</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Intent-based AI systems for multilingual voice assistance</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                        <i class="fas fa-award text-3xl text-green-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Innovation</h3>
+                        <p class="text-gray-600 dark:text-gray-400">First Urdu-English voice assistant for Pakistani universities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The Challenge</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+                    <i class="fas fa-phone-volume text-3xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Thousands of Calls</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Universities receive overwhelming volume of repetitive inquiries daily.</p>
+                </div>
+                <div class="card-hover bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+                    <i class="fas fa-clock text-3xl text-orange-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Wasted Resources</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Human operators spend valuable time answering common questions.</p>
+                </div>
+                <div class="card-hover bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+                    <i class="fas fa-language text-3xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Language Barriers</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Limited Urdu support reduces service quality for many students.</p>
+                </div>
+                <div class="card-hover bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
+                    <i class="fas fa-exclamation-triangle text-3xl text-purple-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">LLM Limitations</h3>
+                    <p class="text-gray-600 dark:text-gray-400">LLM-based systems are slow, expensive, and prone to hallucinations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Solution</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+                    Introducing the AI Voice Agent - a purpose-built system using intent classification instead of LLMs for faster, more reliable responses.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bolt text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Lightning Fast</h3>
+                        <p class="text-gray-600 dark:text-gray-400">10x faster response time than LLM-based systems</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check-circle text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Verified Answers</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Predefined, accurate responses with no hallucinations</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-tie text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Smart Escalation</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Seamless handoff to human operators when needed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
+                <div class="pipeline-step text-center max-w-xs">
+                    <div class="w-24 h-24 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
+                        <i class="fas fa-microphone text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Voice Input</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Student speaks query in Urdu or English</p>
+                </div>
+                <div class="pipeline-step text-center max-w-xs">
+                    <div class="w-24 h-24 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 0.5s">
+                        <i class="fas fa-file-audio text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Speech to Text</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Convert speech to text using Whisper</p>
+                </div>
+                <div class="pipeline-step text-center max-w-xs">
+                    <div class="w-24 h-24 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1s">
+                        <i class="fas fa-brain text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Intent Classification</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Classify query intent using ML models</p>
+                </div>
+                <div class="pipeline-step text-center max-w-xs">
+                    <div class="w-24 h-24 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1.5s">
+                        <i class="fas fa-database text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Response Retrieval</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Fetch verified response from database</p>
+                </div>
+                <div class="pipeline-step text-center max-w-xs">
+                    <div class="w-24 h-24 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 2s">
+                        <i class="fas fa-volume-up text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Voice Output</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Convert text to speech for response</p>
+                </div>
+                <div class="pipeline-step text-center max-w-xs">
+                    <div class="w-24 h-24 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 2.5s">
+                        <i class="fas fa-exchange-alt text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Human Transfer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Escalate on low confidence scores</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Core Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-language text-3xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Multi-language Support</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Native support for both Urdu and English with high accuracy</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-microphone-alt text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">High Accuracy Recognition</h3>
+                    <p class="text-gray-600 dark:text-gray-400">State-of-the-art Urdu speech recognition powered by Whisper</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-project-diagram text-3xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Intent Classification</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Rule-based and ML models for accurate intent detection</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-check-double text-3xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Verified Responses</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Predefined response database with verified information</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-percentage text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Confidence-based Decisions</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Smart escalation based on confidence thresholds</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-exchange-alt text-3xl text-indigo-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Automatic Transfer</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Seamless context transfer to human operators</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-tachometer-alt text-3xl text-pink-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Low Latency</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Sub-second response time for better user experience</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-dollar-sign text-3xl text-teal-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Cost Efficient</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Significant cost savings compared to LLM solutions</p>
+                </div>
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-server text-3xl text-orange-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Flexible Deployment</h3>
+                    <p class="text-gray-600 dark:text-gray-400">On-premise or cloud deployment options available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Technology Stack</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-microphone text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Speech to Text</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">OpenAI Whisper</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-brain text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Intent Classification</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">scikit-learn / fastText</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-code text-4xl text-green-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Backend</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Python & FastAPI</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-database text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Data Storage</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">JSON / SQL</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-volume-up text-4xl text-red-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Text to Speech</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Cloud / Open Source</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-tasks text-4xl text-indigo-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Queue Management</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Redis / RabbitMQ</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-chart-line text-4xl text-pink-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Analytics</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Custom Dashboard</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
+                        <i class="fas fa-shield-alt text-4xl text-teal-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Security</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">JWT / OAuth 2.0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Not LLM Section -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why Not LLM?</h2>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-bolt text-2xl text-green-500 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold">10x Faster Inference</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Sub-second responses vs. 10-30 seconds for LLMs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-ban text-2xl text-blue-500 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold">No Hallucinations</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Verified responses ensure accuracy and reliability</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-dollar-sign text-2xl text-purple-500 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold">Lower Cost</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">90% reduction in operational costs</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-microchip text-2xl text-red-500 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold">No GPU Dependency</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Runs efficiently on standard hardware</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-sync text-2xl text-yellow-500 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold">Easier Updates</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Simple database updates vs. model retraining</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-2xl text-indigo-500 mt-1"></i>
+                            <div>
+                                <h3 class="font-semibold">Deterministic Behavior</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Consistent responses for same queries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">System Architecture</h2>
+            <div class="max-w-6xl mx-auto">
+                <svg viewBox="0 0 1000 600" class="w-full h-auto">
+                    <!-- Phone Input -->
+                    <rect x="50" y="50" width="120" height="80" rx="10" class="architecture-box"/>
+                    <text x="110" y="95" text-anchor="middle" class="text-sm font-semibold">Phone System</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 170 90 L 220 90" class="architecture-line" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- Speech Processing -->
+                    <rect x="230" y="50" width="120" height="80" rx="10" class="architecture-box"/>
+                    <text x="290" y="85" text-anchor="middle" class="text-sm font-semibold">Speech</text>
+                    <text x="290" y="105" text-anchor="middle" class="text-sm font-semibold">Processing</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 350 90 L 400 90" class="architecture-line" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- Intent Classifier -->
+                    <rect x="410" y="50" width="120" height="80" rx="10" class="architecture-box"/>
+                    <text x="470" y="85" text-anchor="middle" class="text-sm font-semibold">Intent</text>
+                    <text x="470" y="105" text-anchor="middle" class="text-sm font-semibold">Classifier</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 530 90 L 580 90" class="architecture-line" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- Response Engine -->
+                    <rect x="590" y="50" width="120" height="80" rx="10" class="architecture-box"/>
+                    <text x="650" y="85" text-anchor="middle" class="text-sm font-semibold">Response</text>
+                    <text x="650" y="105" text-anchor="middle" class="text-sm font-semibold">Engine</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 710 90 L 760 90" class="architecture-line" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- TTS -->
+                    <rect x="770" y="50" width="120" height="80" rx="10" class="architecture-box"/>
+                    <text x="830" y="95" text-anchor="middle" class="text-sm font-semibold">TTS Engine</text>
+                    
+                    <!-- Database -->
+                    <rect x="410" y="200" width="120" height="80" rx="10" class="architecture-box"/>
+                    <text x="470" y="235" text-anchor="middle" class="text-sm font-semibold">Response</text>
+                    <text x="470" y="255" text-anchor="middle" class="text-sm font-semibold">Database</text>
+                    
+                    <!-- DB Connection -->
+                    <path d="M 470 130 L 470 200" class="architecture-line" stroke-dasharray="5,5"/>
+                    
+                    <!-- Human Operator -->
+                    <rect x="590" y="200" width="120" height="80" rx="10" class="architecture-box" fill="#fef3c7"/>
+                    <text x="650" y="235" text-anchor="middle" class="text-sm font-semibold">Human</text>
+                    <text x="650" y="255" text-anchor="middle" class="text-sm font-semibold">Operator</text>
+                    
+                    <!-- Human Connection -->
+                    <path d="M 650 130 L 650 200" class="architecture-line" stroke-dasharray="5,5"/>
+                    
+                    <!-- Confidence Check -->
+                    <rect x="410" y="350" width="280" height="60" rx="10" class="architecture-box" fill="#ddd6fe"/>
+                    <text x="550" y="385" text-anchor="middle" class="text-sm font-semibold">Confidence Threshold Check</text>
+                    
+                    <!-- Decision Arrows -->
+                    <path d="M 470 280 L 470 350" class="architecture-line" marker-end="url(#arrowhead)"/>
+                    <path d="M 650 280 L 650 350" class="architecture-line" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- Low Confidence Path -->
+                    <path d="M 470 410 L 470 440 L 590 440 L 590 200" class="architecture-line" stroke="#ef4444" marker-end="url(#arrowhead-red)"/>
+                    <text x="420" y="455" class="text-xs fill-red-500">Low Confidence</text>
+                    
+                    <!-- High Confidence Path -->
+                    <path d="M 650 410 L 650 440 L 770 440 L 770 130" class="architecture-line" stroke="#10b981" marker-end="url(#arrowhead-green)"/>
+                    <text x="670" y="455" class="text-xs fill-green-500">High Confidence</text>
+                    
+                    <!-- Arrow markers -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#667eea"/>
+                        </marker>
+                        <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+                        </marker>
+                        <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Use Cases</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-graduation-cap text-3xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Admissions Queries</h3>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-2">
+                        <p class="text-sm font-medium mb-1">Query:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"میں بی ایس سی میں ایڈمشن لینا چاہتا ہوں، آخری تاریخ کیا ہے؟"</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded">
+                        <p class="text-sm font-medium mb-1">Response:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"بی ایس سی میں ایڈمشن کی آخری تاریخ 15 اگست ہے۔ آن لائن فارم بھرنے کے لیے ہماری ویب سائٹ پر جائیں۔"</p>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-money-bill-wave text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Fee Structure</h3>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-2">
+                        <p class="text-sm font-medium mb-1">Query:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"What is the fee for first semester computer science?"</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded">
+                        <p class="text-sm font-medium mb-1">Response:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"First semester fee for computer science is Rs. 45,000 including tuition and lab fees."</p>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-book text-3xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Programs & Departments</h3>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-2">
+                        <p class="text-sm font-medium mb-1">Query:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"کس کالج میں انجینئرنگ کی ڈگری ہے؟"</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded">
+                        <p class="text-sm font-medium mb-1">Response:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"انجینئرنگ کی ڈگریز انجینئرنگ فیکلٹی میں دستیاب ہیں، جس میں سافٹ ویئر، مکینیکل اور سول انجینئرنگ شامل ہیں۔"</p>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-clipboard-list text-3xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Exams & Results</h3>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-2">
+                        <p class="text-sm font-medium mb-1">Query:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"When will midterm results be announced?"</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded">
+                        <p class="text-sm font-medium mb-1">Response:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"Midterm results will be announced on December 15th. You can check them on the student portal."</p>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-bed text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Hostel & Transport</h3>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-2">
+                        <p class="text-sm font-medium mb-1">Query:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"ہوسٹل میں سیٹ حاصل کرنے کی عمل کیا ہے؟"</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded">
+                        <p class="text-sm font-medium mb-1">Response:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"ہوسٹل سیٹ کے لیے ایڈمشن آفس میں فارم جمع کروائیں۔ ہوسٹل فی Rs. 8,000 ماہانہ ہے۔"</p>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+                    <i class="fas fa-file-alt text-3xl text-indigo-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Document Requirements</h3>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-2">
+                        <p class="text-sm font-medium mb-1">Query:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"What documents are needed for admission?"</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded">
+                        <p class="text-sm font-medium mb-1">Response:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">"Required documents: Matric certificate, CNIC/B-form, father's CNIC, 4 passport size photos, and domicile."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Interactive Demo</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl p-8 shadow-xl">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center animate-pulse-slow">
+                            <i class="fas fa-phone text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 mb-4">
+                        <div class="flex items-start space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot text-purple-600 text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium mb-1">AI Assistant:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">"سلام، یہ یونیورسٹی وائس اسسٹنٹ ہے۔ میں آپ کی مدد کیسے کر سکتی ہوں؟"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-blue-600 text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium mb-1">Student:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">"میں نے اپنا فیس جمع کروا دیا ہے، لیکن پورٹل پر اس کا ریکارڈ نہیں دکھ رہا۔"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot text-purple-600 text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium mb-1">AI Assistant:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">"سمجھ گئی۔ آپ اپنا رول نمبر اور فیس جمع کرنے کی تاریخ بتائیں تاکہ میں آپ کی مدد کر سکوں۔"</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="playDemo()" class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                            <i class="fas fa-play mr-2"></i>Play Demo
+                        </button>
+                        <button onclick="showTransferDemo()" class="px-6 py-2 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition">
+                            <i class="fas fa-exchange-alt mr-2"></i>Transfer Demo
+                        </button>
+                    </div>
+                    
+                    <div id="demo-status" class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+                        Click buttons to see different scenarios
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evaluation and Results Section -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Evaluation & Results</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">0.3s</div>
+                    <p class="text-gray-600 dark:text-gray-400">Average Response Time</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">95%</div>
+                    <p class="text-gray-600 dark:text-gray-400">Intent Recognition Accuracy</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2">99.9%</div>
+                    <p class="text-gray-600 dark:text-gray-400">System Uptime</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2">70%</div>
+                    <p class="text-gray-600 dark:text-gray-400">Reduced Staff Workload</p>
+                </div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Performance Comparison</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Traditional System</span>
+                                <span class="text-sm">45s avg</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">LLM-based System</span>
+                                <span class="text-sm">12s avg</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Our AI Voice Agent</span>
+                                <span class="text-sm">0.3s avg</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment Section -->
+    <section class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Deployment Options</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">On-Campus Deployment</h3>
+                    <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 text-left">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Full data privacy</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Custom integration</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Direct control</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cloud text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Cloud Deployment</h3>
+                    <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 text-left">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Quick setup</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Scalable</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Lower maintenance</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-network-wired text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Hybrid Model</h3>
+                    <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 text-left">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Best of both</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Flexible architecture</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Multi-campus ready</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">UniVoice AI</h3>
+                    <p class="text-gray-400 text-sm">AI-powered voice assistant for university call handling</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Project Details</h4>
+                    <p class="text-gray-400 text-sm">Final Year Project</p>
+                    <p class="text-gray-400 text-sm">Computer Science Department</p>
+                    <p class="text-gray-400 text-sm">Air University Multan Campus</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Team</h4>
+                    <p class="text-gray-400 text-sm">Tahir Ali - 223595</p>
+                    <p class="text-gray-400 text-sm">Muhammad Talha - 223573</p>
+                    <p class="text-gray-400 text-sm">Supervisor: Professor Memoona Rafique Khan</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Contact</h4>
+                    <p class="text-gray-400 text-sm">223595@students.au.edu.pk</p>
+                    <p class="text-gray-400 text-sm">223573@students.au.edu.pk</p>
+                    <a href="#" class="text-purple-400 hover:text-purple-300 text-sm">GitHub Repository</a>
+                    <br>
+                    <a href="#" class="text-purple-400 hover:text-purple-300 text-sm">Documentation</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 UniVoice AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Check saved theme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        
+        // Demo functions
+        function playDemo() {
+            const status = document.getElementById('demo-status');
+            status.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Playing demo...';
+            
+            setTimeout(() => {
+                status.innerHTML = '<i class="fas fa-check text-green-500 mr-2"></i>Demo completed successfully!';
+                setTimeout(() => {
+                    status.innerHTML = 'Click buttons to see different scenarios';
+                }, 3000);
+            }, 2000);
+        }
+        
+        function showTransferDemo() {
+            const status = document.getElementById('demo-status');
+            status.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Simulating transfer to human operator...';
+            
+            setTimeout(() => {
+                status.innerHTML = '<i class="fas fa-exchange-alt text-blue-500 mr-2"></i>Call transferred to human operator with full context!';
+                setTimeout(() => {
+                    status.innerHTML = 'Click buttons to see different scenarios';
+                }, 3000);
+            }, 2000);
+        }
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
